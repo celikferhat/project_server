@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Dashboard</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+
+   
+   
+</head>
+<body class="animsition">
+
+
+
+
+
+<div class="page-wrapper">
+<aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Tüm Veriler</a>
+                            
+                        </li>
+                        <li>
+                            <a href="gunluk.html">
+                                <i class="fas fa-chart-bar"></i>Günlük</a>
+                        </li>
+                        <li>
+                            <a href="table.html">
+                                <i class="fas fa-table"></i>Haftalık</a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+		<div class="page-container">
+			
+				<div class="section__content section__content--p30">
+					<div class="container-fluid">
+					
+						 
+						<div class="row">
+                            <div class="col-lg-11">
+                                <h2 class="title-1 m-b-25"><br>Tüm Veriler</h2>
+                               <div class="table-responsive table--no-card m-b-40"> 
+                                    <table class="table table-borderless table-striped table-earning"   id="alldata">
+                                        <thead>
+                                            <tr>
+                                                <th>Time</th>
+                                                <th>Data</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                              
+                                                
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                               </div>
+                            </div>
+                            
+                        </div>
+					
+					</div>
+				
+				</div>
+			
+			
+		</div>
+		
+</div>
+
+
+<script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+	
+	<!---- Firebase----->
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAulrnt3RBkoGS6LVa10bPsZ46fHa9FaSk",
+    authDomain: "health-band-database-153fe.firebaseapp.com",
+    databaseURL: "https://health-band-database-153fe.firebaseio.com",
+    projectId: "health-band-database-153fe",
+    storageBucket: "health-band-database-153fe.appspot.com",
+    messagingSenderId: "1067278296627",
+    appId: "1:1067278296627:web:06d7f378ecffdb6d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+<script>
+function addRow(tableID,cell1) {
+  // Get a reference to the table
+  let tableRef = document.getElementById(tableID);
+
+  // Insert a row at the end of the table
+  let newRow = tableRef.insertRow(-1);
+
+  // Insert a cell in the row at index 0
+  let newCell = newRow.insertCell(0);
+  let newCell2 = newRow.insertCell(1);
+  // Append a text node to the cell
+  let newText = document.createTextNode(cell1);
+  //let newText2 = document.createTextNode(cell2);
+  newCell.appendChild(newText);
+ // newCell2.appendChild(newText2);
+}
+
+// Call addRow() with the table's ID
+
+</script>
+<script> 
+		  
+		  var zaman = new Array();
+		  var uyku = new Array();
+		  var ayakta_bekleme = new Array();
+		  var merdiven_cikmak = new Array();
+		  var merdiven_inmek = new Array();
+		  var yuruyus_yapmak = new Array();
+		  
+		  
+		  var label_time = new Array();
+		  var database = firebase.database();
+		  var dataref = firebase.database().ref().child('ESP32_Test').child('Data');
+		  dataref.on('value',function(snapshot){
+		  
+		 
+		  var time;
+		  var sum=0;
+		  var toplam_adim_sayisi=0; 
+		  var gelenverisayisi=0;
+		  snapshot.forEach(function(item){
+		  
+		   
+		  
+			
+		   if(Object.keys(item.val()).length == 0){
+			  
+				time = JSON.stringify( item.val() );	
+					
+				
+			  }
+			  else{
+				  let tableRef = document.getElementById("alldata");				  
+				  let newRow = tableRef.insertRow(-1);
+				  let newCell = newRow.insertCell(0);
+				  let newCell2 = newRow.insertCell(1);
+				  let newText = document.createTextNode(time);
+				  let newText2 = document.createTextNode(JSON.stringify( item.val() ));
+				  newCell.appendChild(newText);
+				  newCell2.appendChild(newText2);
+				  
+				  
+				  
+				  var res = new Array();
+				   res =   item.val().split(":");			  
+				  
+				  
+				  
+				 
+				  
+				  
+				  
+				  sum=0;
+				  var uyku_sum=0;
+				  var ayak_sum=0;
+				  var mer_cik_sum=0;
+				  var mer_in_sum=0;
+				  var yuruyus=0;
+				  
+				  var previos=0;
+				  for(parca in res){
+				  
+				  
+					  if(Object.keys(res[parca]).length > 0){
+						
+						  
+						  var step = res[parca].split(",");		  
+						  
+						  
+						  if( parseInt(step[0]) == previos ){
+						  
+						  }else{
+						  
+							  if(previos < parseInt(step[0])){
+							  sum += (parseInt(step[0]) - previos);							  
+							  previos = parseInt(step[0]);
+							  
+							  }else{
+							  sum += parseInt(step[0]);
+							  previos = parseInt(step[0]);
+							  }
+						  
+						  
+						  }
+					  
+							
+							uyku_sum += parseInt(step[5]);
+							ayak_sum += parseInt(step[3]);
+							mer_cik_sum += parseInt(step[6]);
+							mer_in_sum += parseInt(step[7]);
+							yuruyus += parseInt(step[4]);
+							
+							
+					  }
+				  }
+				  
+				  
+				  
+				  
+				  
+					toplam_adim_sayisi += sum;
+					zaman[gelenverisayisi] = sum;
+					uyku[gelenverisayisi] = uyku_sum;
+					ayakta_bekleme[gelenverisayisi] = ayak_sum;
+					merdiven_cikmak[gelenverisayisi] = mer_cik_sum;
+					merdiven_inmek[gelenverisayisi] = mer_in_sum;
+					yuruyus_yapmak[gelenverisayisi] = yuruyus;
+					 gelenverisayisi++;
+					 
+					
+		   
+					
+			  }
+				
+		 
+		  
+		  label_time[gelenverisayisi] = gelenverisayisi;
+		  
+		  })
+		  
+		  console.log("TOPLAM ADIM : "+toplam_adim_sayisi)
+		  
+		  
+		  localStorage.setItem('zaman', zaman);
+		  localStorage.setItem('uyku', uyku);
+		  localStorage.setItem('ayakta_bekleme', ayakta_bekleme);
+		  localStorage.setItem('merdiven_cikmak', merdiven_cikmak);
+		  localStorage.setItem('merdiven_inmek', merdiven_inmek);
+		  localStorage.setItem('yuruyus_yapmak', yuruyus_yapmak);
+		  localStorage.setItem('label_time', label_time);
+		  
+		  
+		  
+		 
+		  })
+		
+		
+		
+		
+	
+	</script>
+
+
+	
+	
+	
+</body>
+</html>
+
+
+
