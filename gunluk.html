@@ -258,6 +258,9 @@ function resetCanvas(){
   
   
 };
+//initial refresh
+grafik();
+radar();
 
 function grafik(){
 		  
@@ -330,7 +333,7 @@ function grafik(){
 	
  
 	
-	function radar(){
+	function radar() {
 	
 	var uyku_sum=0,ayak_sum=0,mc_sum=0,mi_sum=0,yuru_sum=0;
 	
@@ -405,56 +408,61 @@ aktiviteler[4]=yuru_sum;
 	
 	
 	
-	function ileri(){
-	
-	var sayfa_num = $("#sayfa_num").text();
-	var plus = parseInt(sayfa_num)+1;	
-	 $("#sayfa_num").text("\xa0\xa0"+plus.toString()+"\xa0\xa0");
-	
-	
-	
-	for(var i=0+(240* (parseInt(plus)-1) );240+(240* (parseInt(plus)-1) )>i;i++){
-	
-	if(Object.keys(zaman_array).length >= i ){
-	new_zaman_array[i-(240* (parseInt(plus)-1) )] = zaman_array[i];
-	new_ayakta_bekleme_array[i-(240* (parseInt(plus)-1) )] = ayakta_bekleme_array[i];
-	new_merdiven_cikmak_array[i-(240* (parseInt(plus)-1) )] = merdiven_cikmak_array[i];
-	new_merdiven_inmek_array[i-(240* (parseInt(plus)-1) )] = merdiven_inmek_array[i];
-	new_yuruyus_yapmak_array[i-(240* (parseInt(plus)-1) )] = yuruyus_yapmak_array[i];
-	new_uyku_array[i-(240* (parseInt(plus)-1) )] = uyku_array[i];
-	
-	}
+function ileri() {
+  var sayfa_num = $("#sayfa_num").text();
+  var plus = parseInt(sayfa_num)+1;	
+  if (plus <= 7) {
+    $("#sayfa_num").text("\xa0\xa0"+plus.toString()+"\xa0\xa0");
 
-	}
-	
-	
-	}
-	function geri(){
-	
-	var sayfa_num = $("#sayfa_num").text();
-	if(parseInt(sayfa_num) > 1){
-	var plus = parseInt(sayfa_num)-1;
-	 $("#sayfa_num").text("\xa0\xa0"+plus+"\xa0\xa0");
-	 }
-	
-	
-	for(var i=0+(240* (parseInt(plus)-1) );240+(240* (parseInt(plus)-1) )>i;i++){
-	
-	if(Object.keys(zaman_array).length >= i ){
-	new_zaman_array[i-(240* (parseInt(plus)-1) )] = zaman_array[i];
-	new_ayakta_bekleme_array[i-(240* (parseInt(plus)-1) )] = ayakta_bekleme_array[i];
-	new_merdiven_cikmak_array[i-(240* (parseInt(plus)-1) )] = merdiven_cikmak_array[i];
-	new_merdiven_inmek_array[i-(240* (parseInt(plus)-1) )] = merdiven_inmek_array[i];
-	new_yuruyus_yapmak_array[i-(240* (parseInt(plus)-1) )] = yuruyus_yapmak_array[i];
-	new_uyku_array[i-(240* (parseInt(plus)-1) )] = uyku_array[i];
-	}
+    for(var i=0+(240* (parseInt(plus)-1) );240+(240* (parseInt(plus)-1) )>i;i++){
 
-	}
-	
-	
-	
-	
-	}
+      if(Object.keys(zaman_array).length >= i ){
+        new_zaman_array[i-(240* (parseInt(plus)-1) )] = zaman_array[i];
+        new_ayakta_bekleme_array[i-(240* (parseInt(plus)-1) )] = ayakta_bekleme_array[i];
+        new_merdiven_cikmak_array[i-(240* (parseInt(plus)-1) )] = merdiven_cikmak_array[i];
+        new_merdiven_inmek_array[i-(240* (parseInt(plus)-1) )] = merdiven_inmek_array[i];
+        new_yuruyus_yapmak_array[i-(240* (parseInt(plus)-1) )] = yuruyus_yapmak_array[i];
+        new_uyku_array[i-(240* (parseInt(plus)-1) )] = uyku_array[i];
+
+      }
+
+    }
+
+    grafik();
+    radar();
+  }
+
+
+}
+function geri() {
+
+  var sayfa_num = $("#sayfa_num").text();
+  if(parseInt(sayfa_num) > 1){
+
+    var plus = parseInt(sayfa_num)-1;
+    $("#sayfa_num").text("\xa0\xa0"+plus+"\xa0\xa0");
+    
+}
+
+
+  for(var i=0+(240* (parseInt(plus)-1) );240+(240* (parseInt(plus)-1) )>i;i++) {
+
+    if(Object.keys(zaman_array).length >= i ){
+    new_zaman_array[i-(240* (parseInt(plus)-1) )] = zaman_array[i];
+    new_ayakta_bekleme_array[i-(240* (parseInt(plus)-1) )] = ayakta_bekleme_array[i];
+    new_merdiven_cikmak_array[i-(240* (parseInt(plus)-1) )] = merdiven_cikmak_array[i];
+    new_merdiven_inmek_array[i-(240* (parseInt(plus)-1) )] = merdiven_inmek_array[i];
+    new_yuruyus_yapmak_array[i-(240* (parseInt(plus)-1) )] = yuruyus_yapmak_array[i];
+    new_uyku_array[i-(240* (parseInt(plus)-1) )] = uyku_array[i];
+    }
+
+  }
+
+
+
+  grafik();
+  radar();
+}
 	
 	
 	 
