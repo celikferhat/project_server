@@ -94,12 +94,12 @@
 										
 										
 						
-						 
+						 <div class="row">
 							 <div class="col-lg-6 grid-margin stretch-card" id="graph" >
 							  <div class="card" >
 								<div class="card-body" id="graph-container">
 								  <h4 class="card-title">Bar chart</h4>
-								  <canvas id="mybar" style="height:230px"></canvas>
+								  <canvas id="mybar" style="height:400px"></canvas>
 								</div>
 							  </div>
 							</div>
@@ -111,6 +111,19 @@
                                     </div>
                                 </div>
                             </div>
+							</div>
+							<div class="row">
+							
+							<div class="col-lg-6 grid-margin stretch-card" id="sonchartgraph">
+								  <div class="card">
+									<div class="card-body" id="sonchartcontainer">
+									  <h4 class="card-title">Doughnut chart</h4>
+									  <canvas id="son_chart" style="height:250px"></canvas>
+									</div>
+								  </div>
+								</div>
+							
+							</div>
 							
 					
 					</div>
@@ -233,8 +246,8 @@ function resetCanvas(){
   $('#graph-container').append('<canvas id="mybar"><canvas>');
   canvas = document.querySelector('#mybar');
   ctx = canvas.getContext('2d');
-  ctx.canvas.width = $('#graph').width(); // resize to parent width
-  ctx.canvas.height = $('#graph').height(); // resize to parent height
+  ctx.canvas.width  = window.innerWidth;
+  ctx.canvas.height = window.innerHeight;
   var x = canvas.width/2;
   var y = canvas.height/2;
   ctx.font = '10pt Verdana';
@@ -319,6 +332,75 @@ function grafik(){
     });
   }
   
+  
+   var uyku_sum=0,ayak_sum=0,mc_sum=0,mi_sum=0,yuru_sum=0;
+	
+	for(var i=0;240>i;i++){
+	
+		uyku_sum += parseInt(new_uyku_array[i]);
+		ayak_sum += parseInt(new_ayakta_bekleme_array[i]);
+		mc_sum   += parseInt(new_merdiven_cikmak_array[i]);
+		mi_sum   += parseInt(new_merdiven_inmek_array[i]);
+		yuru_sum += parseInt(new_yuruyus_yapmak_array[i]);
+	
+	}
+
+var aktiviteler = new Array();
+aktiviteler[0]=uyku_sum;
+aktiviteler[1]=ayak_sum;
+aktiviteler[2]=mc_sum;
+aktiviteler[3]=mi_sum;
+aktiviteler[4]=yuru_sum;
+
+  var doughnutPieData = {
+    datasets: [{
+      data: aktiviteler,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+      'Uyku',
+      'Yürüyüş',
+      'Ayakta Bekleme',
+	  'Merdiven Çıkmak',
+	  'Merdiven İnmek'
+    ]
+  };
+  var doughnutPieOptions = {
+    responsive: true,
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  };
+  
+  
+  
+  
+	 if ($("#son_chart").length) {
+    var doughnutChartCanvas = $("#son_chart").get(0).getContext("2d");
+    var doughnutChart = new Chart(doughnutChartCanvas, {
+      type: 'doughnut',
+      data: doughnutPieData,
+      options: doughnutPieOptions
+    });
+  }
   
   
   
