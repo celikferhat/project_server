@@ -95,22 +95,23 @@
 										
 						
 						 
-							<div class="col-lg-6">
+							 <div class="col-lg-6 grid-margin stretch-card" id="graph" >
+							  <div class="card" >
+								<div class="card-body" id="graph-container">
+								  <h4 class="card-title">Bar chart</h4>
+								  <canvas id="mybar" style="height:230px"></canvas>
+								</div>
+							  </div>
+							</div>
+							<div class="col-lg-6" id="radargraph">
                                 <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Adım Sayısı</h3>
-                                        <canvas id="adim"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-							<div class="col-lg-6">
-                                <div class="au-card m-b-30">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 m-b-40">Rader chart</h3>
+                                    <div class="au-card-inner" id="radargraphcontainer">
+                                        <h3 class="title-2 m-b-40">Radar chart</h3>
                                         <canvas id="radar"></canvas>
                                     </div>
                                 </div>
                             </div>
+							
 					
 					</div>
 				
@@ -225,7 +226,113 @@ for(var i=0;240>i;i++){
 
 	}
 
-var uyku_sum=0,ayak_sum=0,mc_sum=0,mi_sum=0,yuru_sum=0;
+
+
+function resetCanvas(){
+  $('#mybar').remove(); // this is my <canvas> element
+  $('#graph-container').append('<canvas id="mybar"><canvas>');
+  canvas = document.querySelector('#mybar');
+  ctx = canvas.getContext('2d');
+  ctx.canvas.width = $('#graph').width(); // resize to parent width
+  ctx.canvas.height = $('#graph').height(); // resize to parent height
+  var x = canvas.width/2;
+  var y = canvas.height/2;
+  ctx.font = '10pt Verdana';
+  ctx.textAlign = 'center';
+  ctx.fillText('This text is centered on the canvas', x, y);
+  
+  
+   $('#radar').remove(); // this is my <canvas> element
+  $('#radargraphcontainer').append('<canvas id="radar"><canvas>');
+  canvas = document.querySelector('#radar');
+  ctx = canvas.getContext('2d');
+  ctx.canvas.width = $('#radargraph').width(); // resize to parent width
+  ctx.canvas.height = $('#radargraph').height(); // resize to parent height
+  var x = canvas.width/2;
+  var y = canvas.height/2;
+  ctx.font = '10pt Verdana';
+  ctx.textAlign = 'center';
+  ctx.fillText('This text is centered on the canvas', x, y);
+  
+  
+  
+  
+};
+
+function grafik(){
+		  
+	resetCanvas();
+		
+	
+  
+   var options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    },
+    legend: {
+      display: false
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
+
+  };
+	
+	
+	
+	
+	  if ($("#mybar").length) {
+    var barChartCanvas = $("#mybar").get(0).getContext("2d");
+    // This will get the first returned node in the jQuery collection.
+	
+	
+	
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar',
+      data:  {
+    labels: new_label_array,
+    datasets: [{
+      label: '# of Votes',
+      data: new_zaman_array,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: "rgba(0, 123, 255, 0.7",
+      borderWidth: 1
+    }]
+  },
+      options: options
+    });
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+	}
+	
+	
+ 
+	
+	function radar(){
+	
+	var uyku_sum=0,ayak_sum=0,mc_sum=0,mi_sum=0,yuru_sum=0;
 	
 	for(var i=0;240>i;i++){
 	
@@ -243,77 +350,9 @@ aktiviteler[1]=ayak_sum;
 aktiviteler[2]=mc_sum;
 aktiviteler[3]=mi_sum;
 aktiviteler[4]=yuru_sum;
-
-
-
-function grafik(){
-		  
-	
-		
-		  try {
-    //bar chart
-	
-    var ctx = document.getElementById("adim");
 	
 	
 	
-    if (ctx) {
-      ctx.height = 300;
-	  ctx.width = 600;
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        defaultFontFamily: 'Poppins',
-        data: {
-          labels: new_label_array,
-          datasets: [
-            {
-              label: "Günlük Adım Verisi",
-              data: new_zaman_array,
-              borderColor: "rgba(0, 123, 255, 0.9)",
-              borderWidth: "0",
-              backgroundColor: "rgba(0, 123, 255, 0.5)",
-              fontFamily: "Poppins"
-            }
-            
-          ]
-        },
-        options: {
-		responsive: false,
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontFamily: "Poppins"
-
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                fontFamily: "Poppins"
-              }
-            }]
-          }
-        }
-      });
-    }
-
-
-  } catch (error) {
-    console.log(error);
-  }
-	}
-	
-	
-	
-	
-	function radar(){
 	console.log(aktiviteler);
 	
 	try {
@@ -418,7 +457,7 @@ function grafik(){
 	}
 	
 	
-	
+	 
 	
 	
 	</script>
