@@ -213,7 +213,16 @@ function addRow(tableID,cell1) {
 				  let newRow = tableRef.insertRow(-1);
 				  let newCell = newRow.insertCell(0);
 				  let newCell2 = newRow.insertCell(1);
-				  let newText = document.createTextNode(time);
+				  var a = new Date(parseInt(time));
+				  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+				  var year = a.getFullYear();
+				  var month = months[a.getMonth()];
+				  var date = a.getDate();
+				  var hour = a.getHours() < 10 ? '0' + a.getHours() : a.getHours();
+				  var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes(); 
+				  var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+				  var formattedTime = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+				  let newText = document.createTextNode(formattedTime);
 				  let newText2 = document.createTextNode(JSON.stringify( item.val() ));
 				  newCell.appendChild(newText);
 				  newCell2.appendChild(newText2);
