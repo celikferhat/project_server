@@ -269,6 +269,20 @@ function resetCanvas(){
   
   
   
+   $('#son_chart').remove(); // this is my <canvas> element
+  $('#sonchartcontainer').append('<canvas id="son_chart"><canvas>');
+  canvas = document.querySelector('#son_chart');
+  ctx = canvas.getContext('2d');
+ // ctx.canvas.width = $('#sonchartgraph').width(); // resize to parent width
+  //ctx.canvas.height = $('#sonchartgraph').height(); // resize to parent height
+  var x = canvas.width/2;
+  var y = canvas.height/2;
+  ctx.font = '10pt Verdana';
+  ctx.textAlign = 'center';
+  ctx.fillText('This text is centered on the canvas', x, y);
+  
+  
+  
   
 };
 //initial refresh
