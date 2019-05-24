@@ -9,7 +9,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Gunluk</title>
+    <title>Haftalık</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -110,7 +110,16 @@
 									  <canvas id="son_chart" style="height:250px"></canvas>
 									</div>
 								  </div>
-								</div>
+                                </div>
+                                
+                                <div class="col-lg-6 grid-margin stretch-card" id="percentgraph">
+                                    <div class="card">
+                                      <div class="card-body" id="percentcontainer">
+                                        <h4 class="card-title">Oran Grafiği</h4>
+                                        <canvas id="percent_chart" style="height:250px"></canvas>
+                                      </div>
+                                    </div>
+                                  </div>
 							
 							</div>
 							
@@ -261,6 +270,18 @@ function resetCanvas(){
   ctx.textAlign = 'center';
   ctx.fillText('This text is centered on the canvas', x, y);
   
+  //tdo
+  $('#percent_chart').remove(); // this is my <canvas> element
+  $('#percentcontainer').append('<canvas id="percent_chart"><canvas>');
+  canvas = document.querySelector('#percent_chart');
+  ctx = canvas.getContext('2d');
+  ctx.canvas.width = $('#percentgraph').width(); // resize to parent width
+  ctx.canvas.height = $('#percentgraph').height(); // resize to parent height
+  var x = canvas.width/2;
+  var y = canvas.height/2;
+  ctx.font = '10pt Verdana';
+  ctx.textAlign = 'center';
+  ctx.fillText('This text is centered on the canvas', x, y);
   
   
   
@@ -346,6 +367,15 @@ aktiviteler[2]=mc_sum;
 aktiviteler[3]=mi_sum;
 aktiviteler[4]=yuru_sum;
 
+var total_sum = uyku_sum/100 + ayak_sum/100 + mc_sum/100 + mi_sum/100 + yuru_sum/100;
+
+var aktivitelerpercent = new Array();
+aktivitelerpercent[0]=Math.round(uyku_sum/total_sum*100)/100;
+aktivitelerpercent[1]=Math.round(ayak_sum/total_sum*100)/100;
+aktivitelerpercent[2]=Math.round(mc_sum/total_sum*100)/100;
+aktivitelerpercent[3]=Math.round(mi_sum/total_sum*100)/100;
+aktivitelerpercent[4]=Math.round(yuru_sum/total_sum*100)/100;
+
   var doughnutPieData = {
     datasets: [{
       data: aktiviteler,
@@ -386,6 +416,38 @@ aktiviteler[4]=yuru_sum;
   
   
   
+
+  var percentPieData = {
+    datasets: [{
+      data: aktivitelerpercent,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+      'Uyku',
+      'Yürüyüş',
+      'Ayakta Bekleme',
+	  'Merdiven Çıkmak',
+	  'Merdiven İnmek'
+    ]
+  };
+
   
 	 if ($("#son_chart").length) {
     var doughnutChartCanvas = $("#son_chart").get(0).getContext("2d");
@@ -396,13 +458,18 @@ aktiviteler[4]=yuru_sum;
     });
   }
   
+
+  if ($("#percent_chart").length) {
+    var pieChartCanvas = $("#percent_chart").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: percentPieData,
+      options: doughnutPieOptions
+    });
+  }
   
   
-  
-  
-  
-  
-  
+
   
 	}
 	

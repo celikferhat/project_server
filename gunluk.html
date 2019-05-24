@@ -98,7 +98,7 @@
 							 <div class="col-lg-6 grid-margin stretch-card" id="graph" >
 							  <div class="card" >
 								<div class="card-body" id="graph-container">
-								  <h4 class="card-title">Bar chart</h4>
+								  <h4 class="card-title">Adım Grafiği</h4>
 								  <canvas id="mybar" style="height:400px"></canvas>
 								</div>
 							  </div>
@@ -106,7 +106,7 @@
 							<div class="col-lg-6" id="radargraph">
                                 <div class="au-card m-b-30">
                                     <div class="au-card-inner" id="radargraphcontainer">
-                                        <h3 class="title-2 m-b-40">Radar chart</h3>
+                                        <h3 class="title-2 m-b-40">Dağılım Grafiği</h3>
                                         <canvas id="radar"></canvas>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
 							<div class="col-lg-6 grid-margin stretch-card" id="sonchartgraph">
 								  <div class="card">
 									<div class="card-body" id="sonchartcontainer">
-									  <h4 class="card-title">Doughnut chart</h4>
+									  <h4 class="card-title">Dilim Grafiği</h4>
 									  <canvas id="son_chart" style="height:250px"></canvas>
 									</div>
 								  </div>
@@ -328,7 +328,7 @@ function grafik(){
       data:  {
     labels: new_label_array,
     datasets: [{
-      label: '# of Steps',
+      label: 'Adım Sys',
       data: new_zaman_array,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -507,7 +507,7 @@ aktiviteler[4]=yuru_sum;
 function ileri() {
   var sayfa_num = $("#sayfa_num").text();
   var plus = parseInt(sayfa_num)+1;	
-  if (plus <= 7) {
+  if (plus <= 5) {
     $("#sayfa_num").text("\xa0\xa0"+plus.toString()+"\xa0\xa0");
 
     for(var i=0+(240* (parseInt(plus)-1) );240+(240* (parseInt(plus)-1) )>i;i++){
