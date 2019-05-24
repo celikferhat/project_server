@@ -507,7 +507,7 @@ aktiviteler[4]=yuru_sum;
 function ileri() {
   var sayfa_num = $("#sayfa_num").text();
   var plus = parseInt(sayfa_num)+1;	
-  if (plus <= 5) {
+
     $("#sayfa_num").text("\xa0\xa0"+plus.toString()+"\xa0\xa0");
 
     for(var i=0+(240* (parseInt(plus)-1) );240+(240* (parseInt(plus)-1) )>i;i++){
@@ -526,7 +526,7 @@ function ileri() {
 
     grafik();
     radar();
-  }
+  
 
 
 }
